@@ -24,7 +24,7 @@ const Circle = ({ isActive, step }) => {
 export const Stepper = ({ isActive, step }) => {
   console.log([isActive, step]);
   return (
-    <div className="flex justify-center items-center h-10 w-27">
+    <div className="flex justify-center items-center h-10 w-26">
       {step > 1 && <Line isActive={isActive} />}
       <Circle isActive={isActive} step={step} />
       {step < 4 && <Line isActive={isActive} />}
