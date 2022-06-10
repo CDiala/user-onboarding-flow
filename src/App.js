@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <h1 className="text-3xl font-bold underline">Hello Eden</h1>
       <br />
-      <Stepper isActive={true} step={5} />
+      <Stepper isActive={true} step={4} />
     </div>
   );
 }
