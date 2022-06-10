@@ -7,6 +7,7 @@ module.exports = {
         "13/20": "65%",
         26: "40px",
         27: "104px",
+        46: "184px",
       },
       colors: {
         active: "#664de5",
