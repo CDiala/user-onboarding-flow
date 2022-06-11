@@ -1,19 +1,20 @@
+// stepper line
 const Line = ({ isActive }) => {
-  console.log("isActive:", typeof isActive); // #664de5
   return (
     <div
-      className={`border ${isActive ? "border-active" : "border-white"} w-8`}
+      className={`border ${isActive ? "border-active" : "border-inactive"} w-8`}
     ></div>
   );
 };
 
+// stepper circle
 const Circle = ({ isActive, step }) => {
   return (
     <div
       className={`${
         isActive ? "text-white" : "text-black"
-      } rounded-full border ${isActive ? "border-active" : "border-white"} ${
-        isActive ? "bg-active" : "bg-black"
+      } rounded-full border ${isActive ? "border-active" : "border-inactive"} ${
+        isActive ? "bg-active" : "bg-white"
       } flex items-center justify-center cursor-pointer xs:text-xs md:text-base text-lg h-full w-10 transition-all `}
     >
       {step}
@@ -21,13 +22,17 @@ const Circle = ({ isActive, step }) => {
   );
 };
 
-export const Stepper = ({ isActive, step }) => {
-  console.log([isActive, step]);
+// stepper unit
+export const Stepper = ({ isActive, step, length }) => {
   return (
-    <div className="flex justify-center items-center h-10 w-26">
+    <div
+      className={`flex ${
+        length === step ? "justify-start" : "justify-end"
+      } items-center h-10 w-26`}
+    >
       {step > 1 && <Line isActive={isActive} />}
       <Circle isActive={isActive} step={step} />
-      {step < 4 && <Line isActive={isActive} />}
+      {step < length && <Line isActive={isActive} />}
     </div>
   );
 };

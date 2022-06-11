@@ -11,6 +11,11 @@ module.exports = {
       },
       colors: {
         active: "#664de5",
+        inactive: "#e9e1e182",
+      },
+      maxWidth: {
+        88.5: "354px",
+        131: "524px",
       },
     },
   },
