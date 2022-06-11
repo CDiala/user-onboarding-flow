@@ -1,10 +1,10 @@
 import success from "../assets/success.png";
 
-const enrolmentInfoArray = [
+export const enrolmentInfoArray = [
   {
     title: "Welcome! First things first...",
     note: "You can always change them later.",
-    inputInfo: [
+    info: [
       {
         label: "Full Name",
         placeholder: "Steve Jobs",
@@ -16,12 +16,13 @@ const enrolmentInfoArray = [
         value: "",
       },
     ],
+    control: "input",
   },
 
   {
     title: "Let's set up a home for all your work",
     note: "You can always create another workspace later.",
-    inputInfo: [
+    info: [
       {
         label: "Workspace Name",
         placeholder: "Eden",
@@ -35,12 +36,13 @@ const enrolmentInfoArray = [
         value: "",
       },
     ],
+    control: "input",
   },
 
   {
     title: "How are you planning to use Eden?",
     note: "We'll streamline your setup experience accordingly.",
-    cardInfo: [
+    info: [
       {
         label: "For myself",
         placeholder: `Write better. Think more clearly. Stay organized.`,
@@ -52,13 +54,37 @@ const enrolmentInfoArray = [
         isSelected: false,
       },
     ],
+    control: "card",
   },
 
   {
     img: success,
-    title: "Congratulations, Eren!",
+    title: "Congratulations, name!",
     note: "You have completed onboarding, you can start using the Eden!",
   },
 ];
 
-export default enrolmentInfoArray;
+const getKeys = (array) => {
+  let keyArray = [];
+  for (let i = 0; i < array.length; i++) {
+    let subArray = [];
+    if (array[i].hasOwnProperty("info")) {
+      subArray = array[i].info;
+    }
+    for (let subKey of subArray) {
+      keyArray.push(subKey.label);
+    }
+  }
+  return keyArray;
+};
+
+const getObject = (fieldArray) => {
+  let enrolmentObject = {};
+  for (let key of fieldArray) {
+    enrolmentObject[key] = "";
+  }
+
+  return enrolmentObject;
+};
+
+export const finalEnrolmentObject = getObject(getKeys(enrolmentInfoArray));

@@ -3,7 +3,7 @@ import { stepCount } from "../../data/stepperCount";
 
 const StepperControl = ({ count }) => {
   return (
-    <div className="flex justify-center max-w-88.5">
+    <div className="flex justify-center max-w-88.5 mb-23.5">
       {stepCount.map((step) => {
         return (
           <Stepper

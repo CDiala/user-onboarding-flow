@@ -1,12 +1,10 @@
 import "./App.css";
-import Button from "./components/shared/Button";
+import EnrolmentForm from "./components/widget/EnrolmentForm";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">Hello Eden</h1>
-      <br />
-      <Button text="Create Workstation" />
+    <div className="App h-screen">
+      <EnrolmentForm />
     </div>
   );
 }
