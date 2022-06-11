@@ -1,6 +1,6 @@
 const Input = ({
-  inputPlaceholder,
-  readOnlyPlaceholder,
+  placeholder,
+  optionalPlaceholder,
   readOnly,
   title,
   isOptional,
@@ -16,7 +16,7 @@ const Input = ({
           <input
             readOnly={readOnly}
             className="inline-flex items-center rounded-l-md border-0 border-r border-slate-200 bg-gray-50 text-gray-500 p-4 w-7/20"
-            placeholder={readOnlyPlaceholder}
+            placeholder={optionalPlaceholder}
           />
         )}
         <input
@@ -28,7 +28,7 @@ const Input = ({
           } rounded-none rounded-r-md rounded-${
             readOnly ? "" : "l-md"
           } border-slate-200 p-4`}
-          placeholder={inputPlaceholder}
+          placeholder={placeholder}
         />
       </div>
     </div>
