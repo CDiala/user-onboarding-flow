@@ -1,4 +1,11 @@
 import setElementClass from "../../utils/toggleClass";
+import {
+  cardContainerStyle,
+  cardImageStyle,
+  headerStyle,
+  paragraphStyle,
+  textStyle,
+} from "./cardStyles";
 
 const Card = ({ img, text, id }) => {
   return (
@@ -11,12 +18,12 @@ const Card = ({ img, text, id }) => {
           "border-active"
         );
       }}
-      className="flex flex-col w-46 h-46 p-6 border-2 cursor-pointer rounded-md"
+      className={cardContainerStyle}
     >
-      <img className="w-5 max-w-max mb-7 ml-1" src={img} alt="card icon" />
-      <div className="text-xsm">
-        <h3 className="mb-4 md:text-base">{text[0]}</h3>
-        <p className="text-gray-500">{text[1]}</p>
+      <img className={cardImageStyle} src={img} alt="card icon" />
+      <div className={textStyle}>
+        <h3 className={headerStyle}>{text[0]}</h3>
+        <p className={paragraphStyle}>{text[1]}</p>
       </div>
     </div>
   );
