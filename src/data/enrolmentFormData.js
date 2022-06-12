@@ -1,4 +1,6 @@
 import success from "../assets/success.png";
+import myself from "../assets/myself.png";
+import users from "../assets/users.png";
 
 export const enrolmentInfoArray = [
   {
@@ -45,11 +47,13 @@ export const enrolmentInfoArray = [
     info: [
       {
         label: "For myself",
+        img: myself,
         placeholder: `Write better. Think more clearly. Stay organized.`,
         isSelected: false,
       },
       {
         label: "With my team",
+        img: users,
         placeholder: `Wikis, docs, tasks & projects, all in one place.`,
         isSelected: false,
       },

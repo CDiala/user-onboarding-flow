@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../shared/Button";
 import Card from "../shared/Card";
 import Input from "../shared/Input";
@@ -6,7 +6,6 @@ import Logo from "../shared/Logo";
 import StepperControl from "../widget/StepperControl";
 import { enrolmentInfoArray } from "../../data/enrolmentFormData";
 import { finalEnrolmentObject } from "../../utils/createObject";
-import eden from "../../assets/eden.png";
 import success from "../../assets/success.png";
 import {
   enrolmentContainerStyle,
@@ -16,16 +15,31 @@ import {
   formTitleStyle,
   successImageStyle,
 } from "./enrolmentFormStyles";
+import setElementStyle from "../../utils/toggleClass";
+import { getId } from "../../utils/retrieveString";
+import updateObjResult from "../../utils/updateState";
 
 const EnrolmentForm = () => {
   const [count, setCount] = useState(0);
   const [objEnrolment, setObjEnrolment] = useState(finalEnrolmentObject);
   const dataOne = enrolmentInfoArray[count];
 
-  const textChanged = (objControl) => {
-    let property = objControl.target.name;
-    let value = objControl.target.value;
-    setObjEnrolment({ ...objEnrolment, [property]: value });
+  useEffect(() => {
+    console.log(objEnrolment);
+  }, [objEnrolment]);
+
+  const setSelectedCard = (e) => {
+    const id = getId(e);
+    const selectedOption = document
+      .getElementById(id)
+      .getElementsByTagName("h3")[0].innerText;
+
+    updateObjResult(
+      setObjEnrolment,
+      objEnrolment,
+      "selectedOption",
+      selectedOption
+    );
   };
 
   return (
@@ -54,9 +68,13 @@ const EnrolmentForm = () => {
             return (
               <Card
                 key={index}
-                img={eden}
-                id={index}
+                img={info.img}
+                id={`card${index}`}
                 text={[info.label, info.placeholder]}
+                onClick={(e) => {
+                  setElementStyle("inputContainer", getId(e), "border-active");
+                  setSelectedCard(e);
+                }}
               />
             );
           })}
@@ -72,7 +90,14 @@ const EnrolmentForm = () => {
                   readOnly={info.isOptional}
                   title={[info.label]}
                   isOptional={info.isOptional}
-                  onChange={(e) => textChanged(e)}
+                  onChange={(e) =>
+                    updateObjResult(
+                      setObjEnrolment,
+                      objEnrolment,
+                      e.target.name,
+                      e.target.value
+                    )
+                  }
                   value={objEnrolment[info.label]}
                   type={info.type}
                 />

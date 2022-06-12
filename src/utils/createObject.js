@@ -8,7 +8,9 @@ const getKeys = (array) => {
       subArray = array[i].info;
     }
     for (let subKey of subArray) {
-      keyArray.push(subKey.label);
+      if (!subKey.hasOwnProperty("isSelected")) {
+        keyArray.push(subKey.label);
+      }
     }
   }
   return keyArray;
@@ -16,11 +18,9 @@ const getKeys = (array) => {
 
 const getObject = (fieldArray) => {
   let enrolmentObject = {};
-  // let fieldArray = fnFieldArray();
   for (let key of fieldArray) {
     enrolmentObject[key] = "";
   }
-  // console.log(enrolmentObject);
   return enrolmentObject;
 };
 

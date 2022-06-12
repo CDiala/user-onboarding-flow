@@ -1,5 +1,4 @@
-const setElementClass = (parentId, childId, color) => {
-  console.log(childId);
+const setElementStyle = (parentId, childId, color) => {
   let childList = document.getElementById(parentId).children;
   for (let child of childList) {
     child.classList.remove(color);
@@ -7,4 +6,4 @@ const setElementClass = (parentId, childId, color) => {
   document.getElementById(childId).classList.add(color);
 };
 
-export default setElementClass;
+export default setElementStyle;
