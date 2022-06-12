@@ -1,3 +1,12 @@
+import {
+  activeInput,
+  inactiveInput,
+  inputGroup,
+  labelStyle,
+  optLabelStyle,
+  controlGroupClass,
+} from "./inputStyles";
+
 const Input = ({
   placeholder,
   optionalPlaceholder,
@@ -9,21 +18,17 @@ const Input = ({
   type,
 }) => {
   return (
-    <div className="w-full text-sm text-base md:text-lg">
-      <label htmlFor={title} className="block font-medium text-gray-700 mb-3">
+    <div className={controlGroupClass()}>
+      <label htmlFor={title} className={labelStyle()}>
         {title}{" "}
-        {isOptional && <span className="text-gray-400">{"(optional)"}</span>}
+        {isOptional && <span className={optLabelStyle()}>{"(optional)"}</span>}
       </label>
-      <div
-        className={`${
-          readOnly ? "border" : "border-0"
-        } flex rounded-md border-slate-200`}
-      >
+      <div className={`${inputGroup(readOnly)}`}>
         {readOnly && (
           <input
             type={type}
             disabled={readOnly}
-            className="inline-flex items-center rounded-l-md border-0 border-r border-slate-200 bg-gray-50 font-medium py-2.5 px-3.5 w-7/20"
+            className={`${inactiveInput()}`}
             placeholder={optionalPlaceholder}
           />
         )}
@@ -32,11 +37,7 @@ const Input = ({
           type={type}
           name={title}
           id={title}
-          className={`${
-            readOnly
-              ? "w-13/20 rounded-l-none border-0 focus:leading-5.5"
-              : "w-full border"
-          } py-2.5 px-3.5 rounded-md border-slate-200 focus:ring-active focus:border focus:border-active`}
+          className={`${activeInput(readOnly)}`}
           placeholder={placeholder}
           onChange={onChange}
           value={value}
