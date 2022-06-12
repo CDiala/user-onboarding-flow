@@ -3,7 +3,7 @@ import EnrolmentForm from "./components/widget/EnrolmentForm";
 
 function App() {
   return (
-    <div className="App h-screen">
+    <div className="h-screen">
       <EnrolmentForm />
     </div>
   );

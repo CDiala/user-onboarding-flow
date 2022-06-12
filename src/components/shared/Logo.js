@@ -2,7 +2,7 @@ import eden from "../../assets/eden.png";
 
 const AppLogo = () => {
   return (
-    <header className="flex items-center justify-center gap-x-3.5 w-full mb-19.5">
+    <header className="flex items-center justify-center gap-x-3.5 w-full mb-14 md:mb-19.5">
       <img src={eden} alt="company logo" />
       <h1 className="text-2xl ">Eden</h1>
     </header>

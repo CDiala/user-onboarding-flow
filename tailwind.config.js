@@ -5,8 +5,10 @@ module.exports = {
       spacing: {
         "7/20": "35%",
         "13/20": "65%",
+        "7/10": "70%",
         "22px": "22px",
         19.5: "78px",
+        22: "88px",
         23.5: "94px",
         26: "104px",
         46: "184px",
@@ -17,16 +19,22 @@ module.exports = {
         inactive: "#e9e1e182",
       },
       maxWidth: {
-        88.5: "354px",
-        131: "524px",
+        100: "400px",
+        88: "352px",
+        131: "32.9375rem",
       },
       fontSize: {
-        "3xl": [
-          "33px",
-          {
-            // letterSpacing: '-0.01em',
-          },
-        ],
+        "3xl": ["33px"],
+        xsm: ["1rem", "1.09375rem"],
+        xs: ["1rem", "1.25rem"],
+        small: "1rem",
+        big: "2.125rem",
+      },
+      margin: {
+        "22px": "22px",
+      },
+      lineHeight: {
+        5.5: "1.375rem",
       },
     },
   },
