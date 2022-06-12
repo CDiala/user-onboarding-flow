@@ -18,12 +18,12 @@ const Card = ({ img, text, id }) => {
           "border-active"
         );
       }}
-      className={cardContainerStyle}
+      className={cardContainerStyle()}
     >
-      <img className={cardImageStyle} src={img} alt="card icon" />
-      <div className={textStyle}>
-        <h3 className={headerStyle}>{text[0]}</h3>
-        <p className={paragraphStyle}>{text[1]}</p>
+      <img className={cardImageStyle()} src={img} alt="card icon" />
+      <div className={textStyle()}>
+        <h3 className={headerStyle()}>{text[0]}</h3>
+        <p className={paragraphStyle()}>{text[1]}</p>
       </div>
     </div>
   );
