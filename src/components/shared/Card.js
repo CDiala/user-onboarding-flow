@@ -1,17 +1,15 @@
-const Card = ({ img, text, id }) => {
-  const clearClass = (parentId, childId) => {
-    let childList = document.getElementById(parentId).children;
-    for (let child of childList) {
-      child.classList.remove("border-active");
-    }
-    document.getElementById(childId).classList.add("border-active");
-  };
+import setElementClass from "../../utils/toggleClass";
 
+const Card = ({ img, text, id }) => {
   return (
     <div
       id={id}
       onClick={(e) => {
-        clearClass("inputContainer", e.target.id || e.target.parentElement.id);
+        setElementClass(
+          "inputContainer",
+          e.target.id || e.target.parentElement.id,
+          "border-active"
+        );
       }}
       className="flex flex-col w-46 h-46 p-6 border-2 cursor-pointer rounded-md"
     >
