@@ -12,9 +12,12 @@ const Card = ({ img, text, id }) => {
     <div
       id={id}
       onClick={(e) => {
+        console.log(e);
         setElementClass(
           "inputContainer",
-          e.target.id || e.target.parentElement.id,
+          e.target.id ||
+            e.target.parentElement.id ||
+            e.target.parentElement.parentElement.id,
           "border-active"
         );
       }}
