@@ -1,10 +1,11 @@
 import eden from "../../assets/eden.png";
+import { cardTitleStyle, logoContainerStyle } from "./logoStyle";
 
 const AppLogo = () => {
   return (
-    <header className="flex items-center justify-center gap-x-3.5 w-full mb-14 md:mb-19.5">
+    <header className={logoContainerStyle()}>
       <img src={eden} alt="company logo" />
-      <h1 className="text-2xl ">Eden</h1>
+      <h1 className={cardTitleStyle()}>Eden</h1>
     </header>
   );
 };
