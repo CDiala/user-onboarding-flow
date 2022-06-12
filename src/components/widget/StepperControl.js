@@ -1,9 +1,10 @@
 import Stepper from "../shared/Stepper";
 import { stepCount } from "../../data/stepperCount";
+import { stepperControlContainerStyle } from "./stepperControlStyles";
 
 const StepperControl = ({ count }) => {
   return (
-    <div className="flex justify-center max-w-88 mb-14 md:mb-23.5">
+    <div className={stepperControlContainerStyle()}>
       {stepCount.map((step) => {
         return (
           <Stepper
@@ -11,7 +12,6 @@ const StepperControl = ({ count }) => {
             isActive={step <= count + 1}
             step={step}
             length={stepCount.length}
-            // onClick
           />
         );
       })}
