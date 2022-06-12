@@ -1,4 +1,3 @@
-import setElementClass from "../../utils/toggleClass";
 import {
   cardContainerStyle,
   cardImageStyle,
@@ -7,22 +6,9 @@ import {
   textStyle,
 } from "./cardStyles";
 
-const Card = ({ img, text, id }) => {
+const Card = ({ img, text, id, onClick }) => {
   return (
-    <div
-      id={id}
-      onClick={(e) => {
-        console.log(e);
-        setElementClass(
-          "inputContainer",
-          e.target.id ||
-            e.target.parentElement.id ||
-            e.target.parentElement.parentElement.id,
-          "border-active"
-        );
-      }}
-      className={cardContainerStyle()}
-    >
+    <div id={id} onClick={onClick} className={cardContainerStyle()}>
       <img className={cardImageStyle()} src={img} alt="card icon" />
       <div className={textStyle()}>
         <h3 className={headerStyle()}>{text[0]}</h3>
