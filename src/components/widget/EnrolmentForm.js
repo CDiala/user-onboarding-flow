@@ -4,50 +4,51 @@ import Card from "../shared/Card";
 import Input from "../shared/Input";
 import Logo from "../shared/Logo";
 import StepperControl from "../widget/StepperControl";
-import {
-  enrolmentInfoArray,
-  finalEnrolmentObject,
-} from "../../data/enrolmentFormData";
+import { enrolmentInfoArray } from "../../data/enrolmentFormData";
+import { finalEnrolmentObject } from "../../utils/createObject";
 import eden from "../../assets/eden.png";
 import success from "../../assets/success.png";
+import {
+  enrolmentContainerStyle,
+  formCaptionStyle,
+  formInputControlStyle,
+  formSubheaderStyle,
+  formTitleStyle,
+  successImageStyle,
+} from "./enrolmentFormStyles";
 
 const EnrolmentForm = () => {
   const [count, setCount] = useState(0);
   const [objEnrolment, setObjEnrolment] = useState(finalEnrolmentObject);
-
   const dataOne = enrolmentInfoArray[count];
 
-  const textChanged = (x) => {
-    let property = x.target.name;
-    let value = x.target.value;
+  const textChanged = (objControl) => {
+    let property = objControl.target.name;
+    let value = objControl.target.value;
     setObjEnrolment({ ...objEnrolment, [property]: value });
   };
 
   return (
-    <div className="max-w-131 flex flex-col justify-center items-center m-auto h-full">
+    <div className={enrolmentContainerStyle()}>
       <Logo />
 
       <StepperControl count={count} />
 
       {count === enrolmentInfoArray.length - 1 && (
-        <img className="mb-12" src={success} alt="success icon" />
+        <img className={successImageStyle()} src={success} alt="success icon" />
       )}
 
-      <div className="w-4/5 md:w-full mb-9 md:mb-14 text-center">
-        <h2 className="mb-[22px] text-xl md:text-3xl font-bold ">
+      <div className={formCaptionStyle()}>
+        <h2 className={formTitleStyle()}>
           {count === enrolmentInfoArray.length - 1
             ? dataOne.title.replace("name", objEnrolment["Display Name"])
             : dataOne.title}
         </h2>
-        <p className="text-gray-500 text-small md:text-lg">{dataOne.note}</p>
+
+        <p className={formSubheaderStyle()}>{dataOne.note}</p>
       </div>
 
-      <div
-        id="inputContainer"
-        className={`w-4/5 md:w-100 flex flex-col ${
-          count !== 2 ? "gap-y-6" : "md:flex-row gap-y-6 md:gap-x-8"
-        } items-center mb-6`}
-      >
+      <div id="inputContainer" className={`${formInputControlStyle(count)}`}>
         {dataOne.control === "card" &&
           dataOne.info.map((info, index) => {
             return (

@@ -8,13 +8,11 @@ export const enrolmentInfoArray = [
       {
         label: "Full Name",
         placeholder: "Steve Jobs",
-        value: "",
         type: "text",
       },
       {
         label: "Display Name",
         placeholder: "Steve",
-        value: "",
         type: "text",
       },
     ],
@@ -28,7 +26,6 @@ export const enrolmentInfoArray = [
       {
         label: "Workspace Name",
         placeholder: "Eden",
-        value: "",
         type: "text",
       },
       {
@@ -36,7 +33,6 @@ export const enrolmentInfoArray = [
         isOptional: true,
         optionalPlaceholder: "www.eden.com/",
         placeholder: "Example",
-        value: "",
         type: "email",
       },
     ],
@@ -67,28 +63,3 @@ export const enrolmentInfoArray = [
     note: "You have completed onboarding, you can start using the Eden!",
   },
 ];
-
-const getKeys = (array) => {
-  let keyArray = [];
-  for (let i = 0; i < array.length; i++) {
-    let subArray = [];
-    if (array[i].hasOwnProperty("info")) {
-      subArray = array[i].info;
-    }
-    for (let subKey of subArray) {
-      keyArray.push(subKey.label);
-    }
-  }
-  return keyArray;
-};
-
-const getObject = (fieldArray) => {
-  let enrolmentObject = {};
-  for (let key of fieldArray) {
-    enrolmentObject[key] = "";
-  }
-
-  return enrolmentObject;
-};
-
-export const finalEnrolmentObject = getObject(getKeys(enrolmentInfoArray));
