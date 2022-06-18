@@ -1,5 +1,7 @@
 import { circleStyle, stepperLineStyle, stepperStyle } from "./stepperStyles";
 import React from "react";
+import { setElementsStyle } from "../../utils/toggleClass";
+import { stepArray } from "../../data/stepperCount";
 
 // stepper line
 const Line = ({ isActive }) => {
@@ -7,33 +9,26 @@ const Line = ({ isActive }) => {
 };
 
 // stepper circle
-const Circle = ({ isActive, step, count, setCount }) => {
-  const newCount = (num) => {
-    setCount(() => num);
-  };
-
+const Circle = ({ isActive, step, setCount }) => {
   return (
     <div
       className={`${circleStyle(isActive)}`}
       onClick={(e) => {
-        let parentId = e.target.parentElement.id[4];
+        let parentId = e.target.parentElement.id[stepArray.length];
         if (
           Object.values(e.target.classList).includes("bg-active") &&
-          parentId < 4
+          parentId < stepArray.length
         ) {
           e.stopPropagation();
           let loopStart = Number(parentId) + 1;
-          for (let i = loopStart; i <= 4; i++) {
-            let childList = document.getElementById(`Step${i}`).children;
-            for (let child of childList) {
-              child.classList.replace("bg-active", "bg-white");
-              child.classList.replace("border-active", "border-inactive");
-              child.classList.replace("text-white", "text-black");
-            }
+          for (let i = loopStart; i <= stepArray.length; i++) {
+            setElementsStyle(
+              `Step${i}`,
+              ["bg-active", "border-active", "text-white"],
+              ["bg-white", "border-inactive", "text-black"]
+            );
           }
-          newCount(parentId - 1);
-          localStorage.setItem("currentStep", parentId - 1);
-          console.log("next:", parentId);
+          setCount(parentId - 1);
         }
       }}
     >

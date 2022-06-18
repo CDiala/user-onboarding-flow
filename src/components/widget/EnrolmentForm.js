@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../shared/Button";
 import Card from "../shared/Card";
 import Input from "../shared/Input";
@@ -18,16 +18,13 @@ import {
 import setElementStyle from "../../utils/toggleClass";
 import { getId } from "../../utils/retrieveString";
 import updateObjResult from "../../utils/updateState";
-import { stepCount } from "../../data/stepperCount";
+import { stepArray } from "../../data/stepperCount";
 
 const EnrolmentForm = () => {
   const [count, setCount] = useState(0);
   const [objEnrolment, setObjEnrolment] = useState(finalEnrolmentObject);
   const dataOne = enrolmentInfoArray[count];
-
-  useEffect(() => {
-    console.log(objEnrolment);
-  }, [objEnrolment]);
+  const lastIndex = enrolmentInfoArray.length - 1;
 
   const setSelectedCard = (e) => {
     const id = getId(e);
@@ -47,15 +44,15 @@ const EnrolmentForm = () => {
     <div className={enrolmentContainerStyle()}>
       <Logo />
 
-      <StepperControl count={count} stepCount={stepCount} setCount={setCount} />
+      <StepperControl count={count} stepArray={stepArray} setCount={setCount} />
 
-      {count === enrolmentInfoArray.length - 1 && (
-        <img className={successImageStyle()} src={success} alt="success icon" />
+      {count === lastIndex && (
+        <img className={successImageStyle()} src={success} alt="success" />
       )}
 
       <div className={formCaptionStyle()}>
         <h2 className={formTitleStyle()}>
-          {count === enrolmentInfoArray.length - 1
+          {count === lastIndex
             ? dataOne.title.replace("name", objEnrolment["Display Name"])
             : dataOne.title}
         </h2>
@@ -108,13 +105,9 @@ const EnrolmentForm = () => {
       </div>
 
       <Button
-        text={
-          count < enrolmentInfoArray.length - 1
-            ? "Create Workspace"
-            : "Launch Eden"
-        }
+        text={count < lastIndex ? "Create Workspace" : "Launch Eden"}
         onClick={() => {
-          if (count < enrolmentInfoArray.length - 1) setCount(count + 1);
+          if (count < lastIndex) setCount(count + 1);
         }}
       />
     </div>
