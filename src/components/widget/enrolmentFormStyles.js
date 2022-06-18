@@ -7,7 +7,7 @@ const successImageStyle = () => {
 };
 
 const formCaptionStyle = () => {
-  return "w-4/5 md:w-full mb-9 md:mb-14 text-center";
+  return "w-4/5 w-full mb-9 md:mb-14 text-center";
 };
 
 const formTitleStyle = () => {

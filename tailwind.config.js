@@ -1,6 +1,12 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      xsm: "412px",
+      ...defaultTheme.screens,
+    },
     extend: {
       spacing: {
         "7/20": "35%",

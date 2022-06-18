@@ -115,10 +115,6 @@ const EnrolmentForm = () => {
         }
         onClick={() => {
           if (count < enrolmentInfoArray.length - 1) setCount(count + 1);
-          // if (count < enrolmentInfoArray.length - 1)
-          //   localStorage.setItem("currentStep", ++localStorage.currentStep);
-          // if (count < enrolmentInfoArray.length - 1)
-          // console.log(localStorage.currentStep);
         }}
       />
     </div>

@@ -1,5 +1,5 @@
 const cardContainerStyle = () => {
-  return "flex flex-col w-46 h-46 p-6 border-2 cursor-pointer rounded-md";
+  return "flex flex-col w-full h-46 p-6 border-2 cursor-pointer rounded-md";
 };
 
 const cardImageStyle = () => {
