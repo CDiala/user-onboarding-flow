@@ -17,7 +17,7 @@ import {
 } from "./enrolmentFormStyles";
 import setElementStyle from "../../utils/toggleClass";
 import { getId } from "../../utils/retrieveString";
-import updateObjResult from "../../utils/updateState";
+import updateObjResult from "../../utils/updateObject";
 import { stepArray } from "../../data/stepperCount";
 
 const EnrolmentForm = () => {
@@ -43,13 +43,10 @@ const EnrolmentForm = () => {
   return (
     <div className={enrolmentContainerStyle()}>
       <Logo />
-
       <StepperControl count={count} stepArray={stepArray} setCount={setCount} />
-
       {count === lastIndex && (
         <img className={successImageStyle()} src={success} alt="success" />
       )}
-
       <div className={formCaptionStyle()}>
         <h2 className={formTitleStyle()}>
           {count === lastIndex
@@ -59,7 +56,6 @@ const EnrolmentForm = () => {
 
         <p className={formSubheaderStyle()}>{dataOne.note}</p>
       </div>
-
       <div id="inputContainer" className={`${formInputControlStyle(count)}`}>
         {dataOne.control === "card" &&
           dataOne.info.map((info, index) => {
@@ -103,11 +99,13 @@ const EnrolmentForm = () => {
             );
           })}
       </div>
-
       <Button
+        // text={count < lastIndex ? "Create Workspace" : "Launch Eden"}
         text={count < lastIndex ? "Create Workspace" : "Launch Eden"}
         onClick={() => {
-          if (count < lastIndex) setCount(count + 1);
+          if (count < lastIndex) {
+            setCount(count + 1);
+          }
         }}
       />
     </div>
