@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Button from "../shared/Button";
 import Card from "../shared/Card";
 import Input from "../shared/Input";
@@ -18,6 +18,7 @@ import {
 import setElementStyle from "../../utils/toggleClass";
 import { getId } from "../../utils/retrieveString";
 import updateObjResult from "../../utils/updateState";
+import { stepCount } from "../../data/stepperCount";
 
 const EnrolmentForm = () => {
   const [count, setCount] = useState(0);
@@ -46,7 +47,7 @@ const EnrolmentForm = () => {
     <div className={enrolmentContainerStyle()}>
       <Logo />
 
-      <StepperControl count={count} />
+      <StepperControl count={count} stepCount={stepCount} setCount={setCount} />
 
       {count === enrolmentInfoArray.length - 1 && (
         <img className={successImageStyle()} src={success} alt="success icon" />
@@ -114,6 +115,10 @@ const EnrolmentForm = () => {
         }
         onClick={() => {
           if (count < enrolmentInfoArray.length - 1) setCount(count + 1);
+          // if (count < enrolmentInfoArray.length - 1)
+          //   localStorage.setItem("currentStep", ++localStorage.currentStep);
+          // if (count < enrolmentInfoArray.length - 1)
+          // console.log(localStorage.currentStep);
         }}
       />
     </div>
