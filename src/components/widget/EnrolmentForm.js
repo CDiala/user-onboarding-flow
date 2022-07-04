@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../shared/Button";
 import Card from "../shared/Card";
 import Input from "../shared/Input";
@@ -17,14 +17,18 @@ import {
 } from "./enrolmentFormStyles";
 import setElementStyle from "../../utils/toggleClass";
 import { getId } from "../../utils/retrieveString";
-import updateObjResult from "../../utils/updateObject";
+import { updateObjResult, updateOption } from "../../utils/updateObject";
 import { stepArray } from "../../data/stepperCount";
+import isKeyComplete from "../../utils/validateObject";
+import StatusLabel from "../shared/StatusLabel";
 
 const EnrolmentForm = () => {
   const [count, setCount] = useState(0);
   const [objEnrolment, setObjEnrolment] = useState(finalEnrolmentObject);
   const dataOne = enrolmentInfoArray[count];
   const lastIndex = enrolmentInfoArray.length - 1;
+  const [isObjectComplete, setIsObjectComplete] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(null);
 
   const setSelectedCard = (e) => {
     const id = getId(e);
@@ -39,6 +43,44 @@ const EnrolmentForm = () => {
       selectedOption
     );
   };
+
+  const navigateForm = () => {
+    if (isObjectComplete && count + 1 === lastIndex) {
+      setCount(count + 1);
+      console.log("done");
+    } else if (count + 1 < lastIndex) {
+      setCount(count + 1);
+    } else {
+    }
+  };
+
+  const checkValidation = () => {
+    console.log(
+      `isObjectComplete: ${isObjectComplete} \ncount + 1: ${
+        count + 1
+      } \nlastIndex: ${lastIndex}`
+    );
+    if (!isObjectComplete && count + 1 === lastIndex) {
+      setIsInvalid(true);
+    } else if (isObjectComplete && count + 1 === lastIndex) {
+      setIsInvalid(false);
+    } else {
+    }
+  };
+
+  useEffect(() => {
+    setIsInvalid(null);
+    updateOption(setObjEnrolment, objEnrolment, "selectedOption", "");
+  }, [count]);
+
+  useEffect(() => {
+    console.log(
+      `isObjectComplete: ${isObjectComplete} \ncount: ${count} \nlastIndex: ${lastIndex}`
+    );
+    if (count + 1 === lastIndex) {
+      setIsObjectComplete(isKeyComplete(objEnrolment, 5));
+    } else setIsObjectComplete(false);
+  }, [count, lastIndex, objEnrolment]);
 
   return (
     <div className={enrolmentContainerStyle()}>
@@ -99,13 +141,17 @@ const EnrolmentForm = () => {
             );
           })}
       </div>
+      {isInvalid && (
+        <StatusLabel
+          text={"incomplete data provided"}
+          style={`text-red-500 italic font-bold mb-5`}
+        />
+      )}
       <Button
-        // text={count < lastIndex ? "Create Workspace" : "Launch Eden"}
         text={count < lastIndex ? "Create Workspace" : "Launch Eden"}
         onClick={() => {
-          if (count < lastIndex) {
-            setCount(count + 1);
-          }
+          checkValidation();
+          navigateForm();
         }}
       />
     </div>
