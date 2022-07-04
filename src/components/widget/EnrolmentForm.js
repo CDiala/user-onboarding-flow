@@ -71,12 +71,10 @@ const EnrolmentForm = () => {
   useEffect(() => {
     setIsInvalid(null);
     updateOption(setObjEnrolment, objEnrolment, "selectedOption", "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   useEffect(() => {
-    console.log(
-      `isObjectComplete: ${isObjectComplete} \ncount: ${count} \nlastIndex: ${lastIndex}`
-    );
     if (count + 1 === lastIndex) {
       setIsObjectComplete(isKeyComplete(objEnrolment, 5));
     } else setIsObjectComplete(false);
