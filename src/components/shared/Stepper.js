@@ -42,9 +42,7 @@ export const Stepper = ({ isActive, step, length, id, setCount }) => {
   return (
     <div id={id} className={`${stepperStyle(length, step)}`}>
       {step > 1 && <Line isActive={isActive} />}
-
       <Circle isActive={isActive} step={step} setCount={setCount} />
-
       {step < length && <Line isActive={isActive} />}
     </div>
   );

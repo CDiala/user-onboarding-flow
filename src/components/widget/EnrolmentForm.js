@@ -93,7 +93,6 @@ const EnrolmentForm = () => {
             ? dataOne.title.replace("name", objEnrolment["Display Name"])
             : dataOne.title}
         </h2>
-
         <p className={formSubheaderStyle()}>{dataOne.note}</p>
       </div>
       <div id="inputContainer" className={`${formInputControlStyle(count)}`}>
@@ -112,7 +111,6 @@ const EnrolmentForm = () => {
               />
             );
           })}
-
         {dataOne.control === "input" &&
           dataOne.info.map((info, index) => {
             return (
