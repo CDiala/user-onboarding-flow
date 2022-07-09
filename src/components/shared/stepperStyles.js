@@ -1,5 +1,7 @@
 const stepperLineStyle = (isActive) => {
-  return `border ${isActive ? "border-active" : "border-inactive"} w-5 md:w-8`;
+  return `border ${isActive ? "border-active" : "border-inactive"} ${
+    isActive ? "bg-active" : "bg-inactive"
+  } w-5 md:w-8`;
 };
 
 const circleStyle = (isActive) => {
